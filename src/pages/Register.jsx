@@ -18,14 +18,15 @@ const Register = () => {
   };
 
   return (
-    <div className="flex  h-screen">
-      <div className="w-3/6 bg-[#FFFFFF] h-screen items-center justify-center">
+    <div className="flex h-screen">
+      <div className="w-3/6 bg-[#FFFFFF]  h-screen items-center justify-center">
         <p>Sign Up Section</p>
+        <img src="../assets/ProfilePicture.png" alt="img" />
       </div>
       <div className="w-3/6 p-5 flex-col bg-[#000000] text-white h-screen">
         <div className="items-center justify-center">
           <input
-            className="bg-[#111111] w-3/5 p-3 mb-3 flex-1 border border-slate-300 hover:border-indigo-300"
+            className="bg-[#111111] w-3/6 p-3 mb-3 flex-1 border border-[#404040] placeholder:text-[#404040] placeholder:tracking-widest placeholder:font-bold"
             type="email"
             name="email"
             placeholder="EMAIL"
@@ -35,7 +36,7 @@ const Register = () => {
         </div>
         <div>
           <input
-            className="bg-[#111111] w-3/5 p-3 mb-5 flex-1 border border-slate-300 hover:border-indigo-300 tracking-wide"
+            className="bg-[#111111] w-3/6 p-3 mb-5 flex-1 border border-[#404040] placeholder:text-[#404040] placeholder:tracking-widest placeholder:font-bold"
             type="password"
             name="password"
             placeholder="PASSWORD"
@@ -54,7 +55,7 @@ const Register = () => {
           />
         </div> */}
         <button
-          className="bg-[#E50913] w-3/5 p-3 font-semibold"
+          className="bg-[#E50913] w-3/6 p-3 font-bold tracking-widest"
           onClick={onHandleSignUp}
         >
           REGISTER
