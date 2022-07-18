@@ -13,7 +13,7 @@ const Hero = () => {
           `3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&page=1`
         );
         setMovies(res.data.results.slice(0, 1));
-        console.log(res.data.results.slice(0, 1));
+        // console.log(res.data.results.slice(0, 1));
       } catch (error) {
         console.log(error);
       }
