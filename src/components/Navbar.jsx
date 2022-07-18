@@ -90,7 +90,7 @@ const Navbar = () => {
                       </div>
                       <div className="flex items-center space-x-2">
                         {/* Search */}
-                        <NavLink to="/" className="hidden sm:flex items-center">
+                        <NavLink to="/search" className="hidden sm:flex items-center">
                           <SearchIcon className="w-5 h-5 ml-1 text-gray-500" />
                         </NavLink>
 
