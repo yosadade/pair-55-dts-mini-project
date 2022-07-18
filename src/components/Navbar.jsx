@@ -7,6 +7,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
+import { onHandleSignOut } from "../authentication/firebase";
+import { useNavigate } from "react-router-dom";
 
 const headerNav1 = [
   {
@@ -44,11 +46,16 @@ const headerNav = [
 
 const Navbar = () => {
   const [isLoggedOut, setisLoggedOut] = useState(true);
+
+  const navigate = useNavigate();
+
   const clickHandler = () => {
     setisLoggedOut(false);
   };
-  const logoutHandler = () => {
+  const logoutHandler = async () => {
     setisLoggedOut(true);
+    await onHandleSignOut();
+    navigate("/login");
   };
 
   return (
@@ -71,7 +78,11 @@ const Navbar = () => {
                     <div className="sm:block hidden">
                       <div className="flex items-center space-x-10">
                         {headerNav1.map((nav) => (
-                          <NavLink key={nav.display} to={nav.path} onClick={clickHandler}>
+                          <NavLink
+                            key={nav.display}
+                            to={nav.path}
+                            onClick={clickHandler}
+                          >
                             {nav.display}
                           </NavLink>
                         ))}
@@ -101,7 +112,10 @@ const Navbar = () => {
                           </Badge>
                         </NavLink>
 
-                        <Menu as="div" className="sm:block hidden mx-3.5 relative z-10">
+                        <Menu
+                          as="div"
+                          className="sm:block hidden mx-3.5 relative z-10"
+                        >
                           <Menu.Button className="bg-[#141414] flex rounded-full focus:outline-none ">
                             <div className="w-8 h-8">
                               <img
@@ -132,7 +146,9 @@ const Navbar = () => {
                                   <button
                                     onClick={logoutHandler}
                                     className={`${
-                                      active ? "bg-transparent text-white" : "text-white"
+                                      active
+                                        ? "bg-transparent text-white"
+                                        : "text-white"
                                     } flex pl-10 items-center w-full py-2`}
                                   >
                                     <LogoutIcon className="mr-3.5" />

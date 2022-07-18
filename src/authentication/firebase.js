@@ -58,8 +58,9 @@ const onHandleResetPassword = async (email) => {
 
 const onHandleSignOut = async () => {
   await signOut(auth)
-    .then(() => {
+    .then((res) => {
       // Sign-out successful.
+      console.log("success logout", res);
     })
     .catch((error) => {
       // An error happened.

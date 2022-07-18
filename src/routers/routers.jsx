@@ -13,7 +13,7 @@ const Routers = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path=":title" element={<MovieDetail />} />
       </Routes>
