@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { API_KEY, BASE_IMG_URL, urlRequest } from "../../config/config";
-import { Button, OutlineButton } from "../Button/Button";
+import { OutlineButton } from "../Button/Button";
 import { NavLink } from "react-router-dom";
 import "./hero.css";
 
@@ -27,7 +27,9 @@ const Hero = () => {
           <div
             key={movie.id}
             className="item"
-            style={{ backgroundImage: `url(${BASE_IMG_URL}original/${movie.backdrop_path})` }}
+            style={{
+              backgroundImage: `url(${BASE_IMG_URL}original/${movie.backdrop_path})`,
+            }}
           >
             <div className="content">
               <div className="info">
@@ -37,7 +39,9 @@ const Hero = () => {
                 <h1 className="text-[5rem] font-bold text-white text-left my-[3rem] leading-none">
                   {movie.title}
                 </h1>
-                <div className="font-bold text-white text-left mb-[2rem]">{movie.overview}</div>
+                <div className="font-bold text-white text-left mb-[2rem]">
+                  {movie.overview}
+                </div>
                 <div className="text-left flex gap-5">
                   <NavLink to={`/${movie.id}`}>
                     <OutlineButton>Watch trailer</OutlineButton>
