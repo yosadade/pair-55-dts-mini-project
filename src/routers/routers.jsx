@@ -6,18 +6,45 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import MovieDetail from "../pages/MovieDetail";
+import { auth } from "../authentication/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import ProtectedComponent from "../components/ProtectedComponent";
 
 const Routers = () => {
+  const [user] = useAuthState(auth);
+  console.log(user);
+
   return (
     <BrowserRouter>
-      <Navbar />
+      {user && <Navbar />}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedComponent>
+              <Home />
+            </ProtectedComponent>
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <ProtectedComponent>
+              <Login />
+            </ProtectedComponent>
+          }
+        />
+        <Route
+          path="register"
+          element={
+            <ProtectedComponent>
+              <Register />
+            </ProtectedComponent>
+          }
+        />
         <Route path=":title" element={<MovieDetail />} />
       </Routes>
-      <Footer />
+      {user && <Footer />}
     </BrowserRouter>
   );
 };

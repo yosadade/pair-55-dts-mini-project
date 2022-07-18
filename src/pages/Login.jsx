@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  auth,
-  onHandleSignInWithEmailAndPassword,
-} from "../authentication/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { onHandleSignInWithEmailAndPassword } from "../authentication/firebase";
+
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -13,24 +10,13 @@ const Login = () => {
   });
 
   const { email, password } = form;
-  const [user, loading, error] = useAuthState(auth);
+
   const navigate = useNavigate();
 
-  const onHandleSignIn = () => {
-    onHandleSignInWithEmailAndPassword(email, password);
+  const onHandleSignIn = async () => {
+    await onHandleSignInWithEmailAndPassword(email, password);
+    navigate("/");
   };
-
-  useEffect(() => {
-    if (loading) {
-      return;
-    }
-    if (error) {
-      return;
-    }
-    if (user) {
-      navigate("/");
-    }
-  }, [error, loading, navigate, user]);
 
   return (
     <div className="flex  h-screen">

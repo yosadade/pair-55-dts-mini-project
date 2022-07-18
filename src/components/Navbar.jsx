@@ -9,6 +9,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import { onHandleSignOut } from "../authentication/firebase";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../authentication/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const headerNav1 = [
   {
@@ -45,15 +47,14 @@ const headerNav = [
 ];
 
 const Navbar = () => {
-  const [isLoggedOut, setisLoggedOut] = useState(true);
+  const [user] = useAuthState(auth);
 
   const navigate = useNavigate();
 
   const clickHandler = () => {
-    setisLoggedOut(false);
+    // setisLoggedOut(false);
   };
   const logoutHandler = async () => {
-    setisLoggedOut(true);
     await onHandleSignOut();
     navigate("/login");
   };
@@ -74,7 +75,7 @@ const Navbar = () => {
                   </div>
 
                   {/* Navigation */}
-                  {isLoggedOut ? (
+                  {!user ? (
                     <div className="sm:block hidden">
                       <div className="flex items-center space-x-10">
                         {headerNav1.map((nav) => (
@@ -139,7 +140,7 @@ const Navbar = () => {
                                 to="/"
                                 className="block text-lg font-semibold text-center mb-3.5 "
                               >
-                                {`Irwan`}
+                                {user.email}
                               </NavLink>
                               <Menu.Item>
                                 {({ active }) => (
@@ -183,7 +184,7 @@ const Navbar = () => {
 
               {/* Mobile Navigation */}
               <Disclosure.Panel className="sm:hidden block bg-[#141414] text-white">
-                {isLoggedOut ? (
+                {!user ? (
                   <div className="pb-5 mt-2 px-2 shadow-md text-white">
                     {headerNav1.map((nav) => (
                       <Disclosure.Button
@@ -209,7 +210,7 @@ const Navbar = () => {
                           />
                         </div>
                         <div className="flex flex-col ml-3.5">
-                          <p className="font-semibold text-lg">{`Irwan`}</p>
+                          <p className="font-semibold text-lg">{user.email}</p>
                           <small>{}</small>
                         </div>
                       </div>
