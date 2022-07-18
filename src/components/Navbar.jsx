@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { Disclosure, Menu, Transition } from "@headlessui/react";

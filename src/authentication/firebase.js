@@ -7,6 +7,9 @@ import {
   sendPasswordResetEmail,
   signOut,
 } from "firebase/auth";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,44 +29,72 @@ const auth = getAuth(app);
 
 const onHandleSignUpWithEmailAndPassword = async (email, password) => {
   await createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user);
+    .then(() => {
+      const navigate = useNavigate();
+      navigate("/");
     })
     .catch((error) => {
       const errorMessage = error.message;
-      console.log(errorMessage);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: errorMessage,
+      });
     });
 };
 
 const onHandleSignInWithEmailAndPassword = async (email, password) => {
   await signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user);
+    .then(() => {
+      const navigate = useNavigate();
+      navigate("/");
     })
     .catch((error) => {
       const errorMessage = error.message;
-      console.log(errorMessage);
+      const errorCode = error.code;
+      console.log({ errorMessage, errorCode });
+      if (errorCode === "auth/wrong-password") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "wrong password!",
+        });
+      }
+      if (errorCode === "auth/user-not-found") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "user not found!",
+        });
+      }
     });
 };
 
 const onHandleResetPassword = async (email) => {
   await sendPasswordResetEmail(auth, email)
     .then((res) => console.log(res))
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      const errorMessage = error.message;
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: errorMessage,
+      });
     });
 };
 
 const onHandleSignOut = async () => {
   await signOut(auth)
     .then((res) => {
-      // Sign-out successful.
       console.log("success logout", res);
     })
     .catch((error) => {
-      // An error happened.
+      const errorMessage = error.message;
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: errorMessage,
+      });
     });
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -16,7 +17,7 @@ const ProtectedComponent = ({ children }) => {
     }
   }, [navigate, user]);
   if (loading) {
-    return <div>loading</div>;
+    return;
   }
   return children;
 };

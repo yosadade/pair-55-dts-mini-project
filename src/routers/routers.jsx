@@ -34,14 +34,7 @@ const Routers = () => {
             </ProtectedComponent>
           }
         />
-        <Route
-          path="register"
-          element={
-            <ProtectedComponent>
-              <Register />
-            </ProtectedComponent>
-          }
-        />
+        <Route path="register" element={<Register />} />
         <Route path=":title" element={<MovieDetail />} />
       </Routes>
       {user && <Footer />}
