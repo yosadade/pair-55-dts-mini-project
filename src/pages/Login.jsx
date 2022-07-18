@@ -24,10 +24,13 @@ const Login = () => {
     if (loading) {
       return;
     }
+    if (error) {
+      return;
+    }
     if (user) {
       navigate("/");
     }
-  }, [loading, navigate, user]);
+  }, [error, loading, navigate, user]);
 
   return (
     <div className="flex  h-screen">

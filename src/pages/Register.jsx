@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { onHandleSignUpWithEmailAndPassword } from "../authentication/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -9,12 +12,13 @@ const Register = () => {
 
   const { email, password } = form;
 
-  const onHandleSignUp = () => {
-    onHandleSignUpWithEmailAndPassword(email, password);
+  const onHandleSignUp = async () => {
+    await onHandleSignUpWithEmailAndPassword(email, password);
     setForm({
       email: "",
       password: "",
     });
+    navigate("/");
   };
 
   return (
