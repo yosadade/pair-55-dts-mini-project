@@ -101,6 +101,8 @@ const MovieDetail = () => {
                 ></iframe>
               </div>
             );
+          } else {
+            return null;
           }
         })}
       </section>
