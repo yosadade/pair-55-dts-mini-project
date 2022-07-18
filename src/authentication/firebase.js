@@ -34,12 +34,22 @@ const onHandleSignUpWithEmailAndPassword = async (email, password) => {
       navigate("/");
     })
     .catch((error) => {
-      const errorMessage = error.message;
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: errorMessage,
-      });
+      const errorCode = error.code;
+
+      if (errorCode === "auth/wrong-password") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "wrong password!",
+        });
+      }
+      if (errorCode === "auth/user-not-found") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "user not found!",
+        });
+      }
     });
 };
 
@@ -50,9 +60,8 @@ const onHandleSignInWithEmailAndPassword = async (email, password) => {
       navigate("/");
     })
     .catch((error) => {
-      const errorMessage = error.message;
       const errorCode = error.code;
-      console.log({ errorMessage, errorCode });
+
       if (errorCode === "auth/wrong-password") {
         Swal.fire({
           icon: "error",
