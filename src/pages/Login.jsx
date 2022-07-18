@@ -19,7 +19,7 @@ const Login = () => {
         <p>Sign In Section</p>
       </div>
       <div className="w-3/6 p-5 flex-col bg-[#000000] text-white h-screen">
-        <div className="items-center justify-center">
+        <div>
           <input
             className="bg-[#111111] w-3/6 p-3 mb-3 flex-1 border border-[#404040] placeholder:text-[#404040] placeholder:tracking-widest placeholder:font-bold"
             type="email"
@@ -31,7 +31,7 @@ const Login = () => {
         </div>
         <div>
           <input
-            className="bg-[#111111] w-3/6 p-3 mb-4 flex-1 border border-[#404040] placeholder:text-[#404040] placeholder:tracking-widest placeholder:font-bold"
+            className="bg-[#111111] w-3/6 p-3 mb-5 flex-1 border border-[#404040] placeholder:text-[#404040] placeholder:tracking-widest placeholder:font-bold"
             type="password"
             name="password"
             placeholder="PASSWORD"
