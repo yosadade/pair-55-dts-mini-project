@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { API_KEY, urlRequest } from "../config/config";
-import MoiveCard from "./MovieCard";
+import MovieCard from "./MovieCard";
 
 const MovieList = (props) => {
   const [items, setItems] = useState([]);
@@ -19,7 +19,7 @@ const MovieList = (props) => {
   return (
     <div className="md:flex justify-between">
       {items.map((item, i) => (
-        <MoiveCard
+        <MovieCard
           key={i}
           id={item.id}
           title={item.title}
