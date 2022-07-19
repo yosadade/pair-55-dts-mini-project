@@ -40,7 +40,7 @@ const Register = () => {
   return (
     <div className="flex h-screen">
       <div
-        className="w-3/6 bg-[#FFFFFF]  bg-cover bg-no-repeat"
+        className="w-3/6 bg-[#E50913]  bg-cover bg-no-repeat"
         style={{ backgroundImage: `url(${bg})` }}
       ></div>
       <div className="flex justify-center w-3/6 p-5 flex-col bg-[#000000] text-white h-screen">
